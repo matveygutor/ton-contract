@@ -5,7 +5,7 @@ import { useTonConnect } from './hooks/useTonConnect';
 
 function App() {
 
-  const { address, sendIncrement } = useMainContract();
+  const { sendIncrement } = useMainContract();
   const { connected } = useTonConnect();
 
   return (
