@@ -12,34 +12,29 @@ export function useMainContract() {
 
   const client = useTonClient();
   const [contractData, setContractData] = useState<null | {
-    counter_value: number;
-    recent_sender: Address;
-    owner_address: Address;
+    counter_value?: number;
+    recent_sender?: Address;
+    owner_address?: Address;
   }>();
 
   const mainContract = useAsyncInitialize(async () => {
     if (!client) return;
     const contract = new MainContract(
-      Address.parse("EQDEM-kA84HW7gUBonLLrkUJttjk8dCsWi6O31Y9QlJpuCTu") // replace with your address from tutorial 2 step 8
+      Address.parse("EQCZFZNCXe1iCkWekOyd-PHSeHWHeyT9ERt4sqNHhQ5f0XVN") // replace with your address from tutorial 2 step 8
     );
     return client.open(contract) as OpenedContract<MainContract>;
   }, [client]);
 
   useEffect(() => {
     async function getValue() {
-      if (!mainContract) 
-      {
-        console.log(null)
-        return;
-      }
       setContractData(null);
-      const val = await mainContract.getData();
+      const val = await mainContract?.getData();
       setContractData({
-        counter_value: val.number,
-        recent_sender: val.recent_sender,
-        owner_address: val.owner_address
+        counter_value: val?.number,
+        recent_sender: val?.recent_sender,
+        owner_address: val?.owner_address
       });
-
+      
       await sleep(5000);
       getValue();
     }
