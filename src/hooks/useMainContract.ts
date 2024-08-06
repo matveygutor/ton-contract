@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MainContract } from "../contracts/MainContract";
 import { useTonClient } from "./useTonClient";
 import { useAsyncInitialize } from "./useAsyncInitialize";
-import { address, Address, OpenedContract, toNano } from "ton-core";
+import { Address, OpenedContract, toNano } from "ton-core";
 import { useTonConnect } from "./useTonConnect";
 
 export function useMainContract() {
@@ -11,7 +11,7 @@ export function useMainContract() {
     setTimeout(resolve, time));
 
   const client = useTonClient();
-  const [contractData, setContractData] = useState<null | {
+  const [, setContractData] = useState<null | {
     counter_value?: number;
     recent_sender?: Address;
     owner_address?: Address;
