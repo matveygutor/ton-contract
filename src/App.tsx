@@ -3,7 +3,7 @@ import { TonConnectButton } from "@tonconnect/ui-react";
 import { useMainContract } from "./hooks/useMainContract";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { fromNano } from "ton-core";
-import { WebApp } from "@twa-dev/sdk";
+import WebApp from "@twa-dev/sdk";
 
 function App() {
   const {
